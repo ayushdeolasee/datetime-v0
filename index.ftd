@@ -7,6 +7,9 @@ integer value:
 -- integer year: $get_year(value = $current)
 -- ftd.integer: $year
 
+-- integer month: $get_month(value = $current)
+-- ftd.integer: $month
+
 -- datetime now():
 js: js/get_datetime.js
 
@@ -17,3 +20,10 @@ datetime value:
 js: js/get_year.js
 
 get_year(value)
+
+
+-- integer get_month(value):
+datetime value:
+js: js/get_month.js
+
+get_month(value)
