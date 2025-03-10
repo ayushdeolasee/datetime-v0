@@ -1,0 +1,24 @@
+;; -- ftd.text: click here to get the current month
+;; $on-click$: $get_month(return_number = true)
+-- record datetime:
+integer value:
+
+-- datetime current: $now()
+-- ftd.integer: $current.value
+
+-- datetime now():
+js: js/get_datetime.js
+
+get_datetime()
+
+-- void get_year():
+js: js/get_year.js
+
+get_year()
+
+
+;; -- void get_month(return_number):
+;; -- boolean return_number:
+;; js: js/get_month.js
+
+;; get_month(return_number)
