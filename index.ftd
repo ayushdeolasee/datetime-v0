@@ -22,11 +22,21 @@ integer value:
 -- datetime_ex parts_datetime: $parts(value = $current)
 -- ftd.integer: $parts_datetime.year
 
+-- datetime delta_number: $delta(start = $current)
+-- ftd.integer: $delta_number.value
+
 -- datetime datetime_fn(diff):
 optional integer diff:
 js: js/datetime.js
 
 datetime(diff)
+
+-- datetime delta(start, end):
+datetime start:
+optional datetime end:
+js: js/delta.js
+
+delta(start, end)
 
 -- datetime_ex parts(value):
 datetime value:
