@@ -45,6 +45,7 @@ function parts(dt) {
     const second = date.getSeconds();
     const millisecond = date.getMilliseconds();
     const return_object = {
+        dt: i64_value,
         year: year,
         month: month,
         day: day,
