@@ -37,6 +37,7 @@ function parts(dt) {
     const i64_value_millis = Math.floor(i64_value / 1000000);
     const date = new Date(i64_value_millis);
 
+    const timezone_offset = date.getTimezoneOffset();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -46,6 +47,7 @@ function parts(dt) {
     const millisecond = date.getMilliseconds();
     const return_object = {
         dt: i64_value,
+        timezone_offset: timezone_offset,
         year: year,
         month: month,
         day: day,

@@ -4,6 +4,7 @@ integer dt:
 
 -- record datetime_ex:
 integer dt:
+integer timezone_offset:
 integer year:
 integer month:
 integer day:
