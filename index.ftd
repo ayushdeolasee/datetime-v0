@@ -13,16 +13,20 @@ integer millisecond:
 -- record datetime_delta:
 integer value:
 
--- datetime current: $now()
+-- datetime current: $datetime_fn()
 -- ftd.integer: $current.value
+
+-- datetime later: $datetime_fn(diff = 30)
+-- ftd.integer: $later.value
 
 -- datetime_ex parts_datetime: $parts(value = $current)
 -- ftd.integer: $parts_datetime.year
 
--- datetime now():
-js: js/get_datetime.js
+-- datetime datetime_fn(diff):
+optional integer diff:
+js: js/datetime.js
 
-get_datetime()
+datetime(diff)
 
 -- datetime_ex parts(value):
 datetime value:
