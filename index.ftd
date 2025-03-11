@@ -22,24 +22,24 @@ integer value:
 -- datetime_ex parts_datetime: $parts(value = $current)
 -- ftd.integer: $parts_datetime.year
 
--- datetime delta_number: $delta(start = $current)
+-- datetime delta_number: $delta(start = $current, end = $later)
 -- ftd.integer: $delta_number.value
 
 -- datetime datetime_fn(diff):
 optional integer diff:
-js: js/datetime.js
+js: js/functions.js
 
 datetime(diff)
 
 -- datetime delta(start, end):
-datetime start:
-optional datetime end:
-js: js/delta.js
+datetime end:
+optional datetime start:
+js: js/functions.js
 
 delta(start, end)
 
 -- datetime_ex parts(value):
 datetime value:
-js: js/parts.js
+js: js/functions.js
 
 parts(value)
