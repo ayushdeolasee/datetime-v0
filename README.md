@@ -1,12 +1,11 @@
 ## Features to implement  
 - [x] Get current date time 
 - [x] Return Year from a datetime object
-- [] Return Month from a datetime object
-- [] Return Day from a datetime object
-- [] Return Hour from a datetime object
-- [] Return Minute from a datetime object
-- [] Return Second from a datetime object
-- [] Return Time only from a datetime object
+- [x] Return Month from a datetime object
+- [x] Return Day from a datetime object
+- [x] Return Hour from a datetime object
+- [x] Return Minute from a datetime object
+- [x] Return Second from a datetime object
 - [] Calculate time delta between two input dates
 - [] Calculate time delta between now and x time after
 - [] Get current time x amount of time after
