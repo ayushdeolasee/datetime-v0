@@ -6,8 +6,7 @@
 - [x] Return Hour from a datetime object
 - [x] Return Minute from a datetime object
 - [x] Return Second from a datetime object
-- [] Calculate time delta between two input dates
-- [] Calculate time delta between now and x time after
-- [] Get current time x amount of time after
-- [] Get only speciic parts (e.g. Year, Month) from a datetime string
-- [] Replace certain part of a string an return that string (Change date from 12 to 16)# datetime_v0
+- [x] Calculate time delta between two input dates
+- [x] Calculate time delta between now and x time after
+- [x] Get current time x amount of time after
+- [x] Get only speciic parts (e.g. Year, Month) from a datetime string

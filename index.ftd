@@ -1,9 +1,12 @@
 -- record datetime:
-integer value:
+integer timezone_offset:
+integer dt:
 
 -- record datetime_ex:
+integer dt:
 integer year:
 integer month:
+integer week-number:
 integer day:
 integer hour:
 integer minute:
@@ -11,19 +14,20 @@ integer second:
 integer millisecond:
 
 -- record datetime_delta:
-integer value:
+integer delta:
 
 -- datetime current: $datetime_fn()
--- ftd.integer: $current.value
+-- ftd.integer: $current.dt
+-- ftd.integer: $current.timezone_offset
 
 -- datetime later: $datetime_fn(diff = 30)
--- ftd.integer: $later.value
+-- ftd.integer: $later.dt
 
--- datetime_ex parts_datetime: $parts(value = $current)
+-- datetime_ex parts_datetime: $parts(dt = $current)
 -- ftd.integer: $parts_datetime.year
 
--- datetime delta_number: $delta(start = $current, end = $later)
--- ftd.integer: $delta_number.value
+-- datetime_delta delta_number: $delta(start = $current, end = $later)
+-- ftd.integer: $delta_number.delta
 
 -- datetime datetime_fn(diff):
 optional integer diff:
@@ -31,15 +35,15 @@ js: js/functions.js
 
 datetime(diff)
 
--- datetime delta(start, end):
+-- datetime_delta delta(start, end):
 datetime end:
 optional datetime start:
 js: js/functions.js
 
 delta(start, end)
 
--- datetime_ex parts(value):
-datetime value:
+-- datetime_ex parts(dt):
+datetime dt:
 js: js/functions.js
 
-parts(value)
+parts(dt)
