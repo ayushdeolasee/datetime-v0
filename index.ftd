@@ -31,19 +31,20 @@ integer delta:
 
 -- datetime datetime_fn(diff):
 optional integer diff:
-js: js/functions.js
+js: $assets.files.js.fuctions.js
 
 datetime(diff)
 
 -- datetime_delta delta(start, end):
 datetime end:
 optional datetime start:
-js: js/functions.js
+;; js: js/functions.js
+js: $assets.files.js.fuctions.js
 
 delta(start, end)
 
 -- datetime_ex parts(dt):
 datetime dt:
-js: js/functions.js
+js: $assets.files.js.fuctions.js
 
 parts(dt)
