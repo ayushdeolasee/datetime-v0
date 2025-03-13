@@ -19,4 +19,3 @@ jobs:
       - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-v0 
-        # run: cd datetime-v0/ && fastn upload datetime-www
