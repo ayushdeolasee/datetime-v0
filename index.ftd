@@ -1,3 +1,5 @@
+-- ftd.text: Documentation https://github.com/pypdeveloper/datetime-v0/tree/main/docs
+
 -- record datetime:
 integer timezone_offset:
 integer dt:
