@@ -1,12 +1,9 @@
 -- ftd.text: Documentation https://github.com/pypdeveloper/datetime-v0/tree/main/docs
-
 -- record datetime:
-integer timezone_offset:
 integer dt:
 
 -- record datetime-ex:
 integer dt:
-integer timezone_offset:
 integer year:
 integer month:
 integer day:
@@ -15,6 +12,12 @@ integer minute:
 integer second:
 integer millisecond:
 
+-- datetime current: $datetime-fn()
+-- ftd.integer: $current.dt
+
+-- datetime-ex parts-datetime: $parts(dt = $current)
+-- ftd.integer: $parts-datetime.hour
+-- ftd.integer: $parts-datetime.minute
 -- record datetime-delta:
 integer delta:
 

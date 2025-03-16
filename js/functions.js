@@ -1,10 +1,19 @@
 function datetime(diff) {
     const currentDate = new Date();
     const date = new Date(currentDate.getTime() + diff * 60000);
-    const timezoneOffset = new Date().getTimezoneOffset();
-    const now = BigInt(date) * BigInt(1000000);
+
+    const utcTime = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes(),
+        date.getUTCSeconds(),
+        date.getUTCMilliseconds()
+    );
+
+    const now = BigInt(utcTime) * BigInt(1000000);
     return new fastn.recordInstanceClass({
-        timezone_offset: timezoneOffset,
         dt: now,
     });
 }
