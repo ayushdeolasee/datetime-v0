@@ -32,6 +32,12 @@ function usertz(datetime) {
     });
 }
 
+function timezone_offset() {
+    const currentDate = new Date();
+    const timezone_offset = currentDate.getTimezoneOffset();
+    return new fastn.recordInstanceClass({ timezone_offset: timezone_offset });
+}
+
 function delta(start = null, end) {
     if (start == null) {
         console.log("Using no end");
