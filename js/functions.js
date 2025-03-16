@@ -18,6 +18,20 @@ function datetime(diff) {
     });
 }
 
+function usertz(datetime) {
+    const i64_value = Number(datetime.get().toObject().dt);
+    const i64_value_millis = Math.floor(i64_value / 1000000);
+    const utcDate = new Date(i64_value_millis);
+    const timezoneOffsetMs = utcDate.getTimezoneOffset() * 60000;
+
+    const localTimeMs = utcDate.getTime() - timezoneOffsetMs;
+    const localNanoTime = BigInt(localTimeMs) * BigInt(1000000);
+
+    return new fastn.recordInstanceClass({
+        dt: localNanoTime,
+    });
+}
+
 function delta(start = null, end) {
     if (start == null) {
         console.log("Using no end");

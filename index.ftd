@@ -16,8 +16,10 @@ integer millisecond:
 -- ftd.integer: $current.dt
 
 -- datetime-ex parts-datetime: $parts(dt = $current)
--- ftd.integer: $parts-datetime.hour
--- ftd.integer: $parts-datetime.minute
+
+-- datetime usertz-datetime: $usertz(dt = $current)
+-- ftd.integer: $usertz-datetime.dt
+
 -- record datetime-delta:
 integer delta:
 
@@ -39,3 +41,9 @@ datetime dt:
 js: $assets.files.js.functions.js
 
 parts(dt)
+
+-- datetime usertz(dt):
+datetime dt:
+js: $assets.files.js.functions.js
+
+usertz(dt)
