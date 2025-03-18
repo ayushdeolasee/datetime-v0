@@ -18,72 +18,91 @@ function datetime(diff) {
     });
 }
 
-function usertz(datetime) {
-    const i64_value = Number(datetime.get().toObject().dt);
-    const i64_value_millis = Math.floor(i64_value / 1000000);
-    const utcDate = new Date(i64_value_millis);
-    const timezoneOffsetMs = utcDate.getTimezoneOffset() * 60000;
-
-    const localTimeMs = utcDate.getTime() - timezoneOffsetMs;
-    const localNanoTime = BigInt(localTimeMs) * BigInt(1000000);
-
-    return new fastn.recordInstanceClass({
-        dt: localNanoTime,
-    });
-}
-
-function timezone_offset() {
-    const currentDate = new Date();
-    const timezone_offset = currentDate.getTimezoneOffset();
-    return new fastn.recordInstanceClass({ timezone_offset: timezone_offset });
-}
-
-function delta(start = null, end) {
-    if (start == null) {
-        console.log("Using no end");
-        const end_i64_value = Number(end.get().toObject().dt);
-        const end_i64_value_millis = Math.floor(end_i64_value / 1000000);
-        const end_date = new Date(end_i64_value_millis);
-
-        const delta = -Math.floor((new Date() - end_date) / 60000);
-        return new fastn.recordInstanceClass({ delta: delta });
-    } else {
-        console.log("Using end");
-        const start_i64_value = Number(start.get().toObject().dt);
-        const start_i64_value_millis = Math.floor(start_i64_value / 1000000);
-        const start_date = new Date(start_i64_value_millis);
-
-        const end_i64_value = Number(end.get().toObject().dt);
-        const end_i64_value_millis = Math.floor(end_i64_value / 1000000);
-        const end_date = new Date(end_i64_value_millis);
-        const delta = Math.floor((end_date - start_date) / 60000);
-        return new fastn.recordInstanceClass({ delta: delta });
-    }
-}
-
-function parts(dt) {
+function fmt(dt, ft) {
     const i64_value = Number(dt.get().toObject().dt);
     const i64_value_millis = Math.floor(i64_value / 1000000);
-    const date = new Date(i64_value_millis);
 
-    const timezone_offset = date.getTimezoneOffset();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const second = date.getSeconds();
-    const millisecond = date.getMilliseconds();
-    const return_object = {
-        dt: i64_value,
-        timezone_offset: timezone_offset,
-        year: year,
-        month: month,
-        day: day,
-        hour: hour,
-        minute: minute,
-        second: second,
-        millisecond: millisecond,
-    };
-    return new fastn.recordInstanceClass(return_object);
+    // The issue is that when we create a Date object from milliseconds,
+    // JavaScript assumes those milliseconds are in UTC but applies local timezone offset.
+    // We need to explicitly work with UTC methods and convert to local timezone.
+
+    // First, create the date object from the milliseconds
+    const utcDate = new Date(i64_value_millis);
+
+    console.log("Original UTC timestamp (ms):", i64_value_millis);
+    console.log("Date interpreted by JS:", utcDate.toString());
+
+    // Get the user's timezone
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log("Detected user timezone:", userTimeZone);
+
+    // Convert to local timezone
+    // This approach uses toLocaleString with the explicit timezone
+    const localDate = new Date(
+        utcDate.toLocaleString("en-US", { timeZone: userTimeZone })
+    );
+    const timezoneOffset = localDate.getTimezoneOffset();
+    console.log("Timezone offset (minutes):", timezoneOffset);
+
+    // Apply timezone offset if necessary
+    const adjustedDate = new Date(utcDate.getTime());
+
+    console.log("Adjusted date for local timezone:", adjustedDate.toString());
+
+    // Use Intl.DateTimeFormat for formatting in the user's timezone
+    const formatter = new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+        timeZone: userTimeZone,
+    });
+
+    const formattedParts = formatter.formatToParts(adjustedDate);
+    console.log("Formatted parts:", JSON.stringify(formattedParts));
+
+    // Extract the formatted components
+    let weekday, day, month, year, hour, minute, dayPeriod;
+
+    formattedParts.forEach((part) => {
+        switch (part.type) {
+            case "weekday":
+                weekday = part.value;
+                break;
+            case "day":
+                day = part.value;
+                break;
+            case "month":
+                month = part.value;
+                break;
+            case "year":
+                year = part.value;
+                break;
+            case "hour":
+                hour = part.value;
+                break;
+            case "minute":
+                minute = part.value;
+                break;
+            case "dayPeriod":
+                dayPeriod = part.value;
+                break;
+        }
+    });
+
+    // Add ordinal suffix to day
+    const dayNum = parseInt(day);
+    const suffixes = ["th", "st", "nd", "rd"];
+    const relevantDigits =
+        dayNum % 100 > 10 && dayNum % 100 < 14 ? 0 : dayNum % 10;
+    const dayWithSuffix = dayNum + (suffixes[relevantDigits] || suffixes[0]);
+
+    // Combine to create the final formatted string
+    const result = `${weekday} ${dayWithSuffix} ${month} ${year} ${hour}:${minute}${dayPeriod}`;
+    console.log("Final result:", result);
+
+    return result;
 }

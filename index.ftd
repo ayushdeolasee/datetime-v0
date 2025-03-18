@@ -1,62 +1,71 @@
 -- ftd.text: Documentation https://github.com/pypdeveloper/datetime-v0/tree/main/docs
 
--- record timezone-offset:
-integer timezone-offset:
-
+;; -- record timezone-offset:
+;; integer timezone-offset:
 -- record datetime:
 integer dt:
 
--- record datetime-ex:
-integer dt:
-integer year:
-integer month:
-integer day:
-integer hour:
-integer minute:
-integer second:
-integer millisecond:
 
--- datetime current: $datetime-fn()
+;; -- record datetime-ex:
+;; integer dt:
+;; integer year:
+;; integer month:
+;; integer day:
+;; integer hour:
+;; integer minute:
+;; integer second:
+;; integer millisecond:
+
+;; -- record datetime-delta:
+;; integer delta:
+-- datetime current: $now()
 -- ftd.integer: $current.dt
 
--- datetime-ex parts-datetime: $parts(dt = $current)
+-- string fmt-datetime: $fmt(dt = $current, ft = "Human")
+-- ftd.text: $fmt-datetime
+;; -- datetime-ex parts-datetime: $parts(dt = $current)
 
--- datetime usertz-datetime: $usertz(dt = $current)
--- ftd.integer: $usertz-datetime.dt
+;; -- datetime usertz-datetime: $usertz(dt = $current)
+;; -- ftd.integer: $usertz-datetime.dt
 
--- timezone-offset user-timezone-offset: $timezone-offset-fn()
--- ftd.integer: $user-timezone-offset.timezone-offset
+;; -- timezone-offset user-timezone-offset: $timezone-offset-fn()
+;; -- ftd.integer: $user-timezone-offset.timezone-offset
 
--- record datetime-delta:
-integer delta:
 
--- datetime datetime-fn(diff):
+-- datetime now(diff):
 optional integer diff:
 js: $assets.files.js.functions.js
 
 datetime(diff)
 
--- datetime-delta delta(start, end):
-datetime end:
-optional datetime start:
-js: $assets.files.js.functions.js
-
-delta(start, end)
-
--- datetime-ex parts(dt):
+-- string fmt(dt, ft):
 datetime dt:
+string ft:
 js: $assets.files.js.functions.js
 
-parts(dt)
+fmt(dt, ft)
 
--- datetime usertz(dt):
-datetime dt:
-js: $assets.files.js.functions.js
+;; -- datetime-delta delta(start, end):
+;; datetime end:
+;; optional datetime start:
+;; js: $assets.files.js.functions.js
 
-usertz(dt)
+;; delta(start, end)
+
+;; -- datetime-ex parts(dt):
+;; datetime dt:
+;; js: $assets.files.js.functions.js
+
+;; parts(dt)
+
+;; -- datetime usertz(dt):
+;; datetime dt:
+;; js: $assets.files.js.functions.js
+
+;; usertz(dt)
 
 
--- timezone-offset timezone-offset-fn():
-js: $assets.files.js.functions.js
+;; -- timezone-offset timezone-offset-fn():
+;; js: $assets.files.js.functions.js
 
-timezone_offset()
+;; timezone_offset()
