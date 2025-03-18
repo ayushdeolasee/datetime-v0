@@ -19,90 +19,127 @@ function datetime(diff) {
 }
 
 function fmt(dt, ft) {
-    const i64_value = Number(dt.get().toObject().dt);
-    const i64_value_millis = Math.floor(i64_value / 1000000);
+    const i64 = Number(dt.get().toObject().dt);
+    const milliseconds = Math.floor(i64 / 1000000);
+    const date = new Date();
+    const timezone_offset = date.getTimezoneOffset();
+    const local_time = milliseconds - timezone_offset * 60000;
+    const local_date = new Date(local_time);
+    const format = ft.replaceAll(`"`, "");
 
-    // The issue is that when we create a Date object from milliseconds,
-    // JavaScript assumes those milliseconds are in UTC but applies local timezone offset.
-    // We need to explicitly work with UTC methods and convert to local timezone.
+    if (format == "datetime") {
+        const weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        const weekday = weekdays[local_date.getDay()];
 
-    // First, create the date object from the milliseconds
-    const utcDate = new Date(i64_value_millis);
-
-    console.log("Original UTC timestamp (ms):", i64_value_millis);
-    console.log("Date interpreted by JS:", utcDate.toString());
-
-    // Get the user's timezone
-    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log("Detected user timezone:", userTimeZone);
-
-    // Convert to local timezone
-    // This approach uses toLocaleString with the explicit timezone
-    const localDate = new Date(
-        utcDate.toLocaleString("en-US", { timeZone: userTimeZone })
-    );
-    const timezoneOffset = localDate.getTimezoneOffset();
-    console.log("Timezone offset (minutes):", timezoneOffset);
-
-    // Apply timezone offset if necessary
-    const adjustedDate = new Date(utcDate.getTime());
-
-    console.log("Adjusted date for local timezone:", adjustedDate.toString());
-
-    // Use Intl.DateTimeFormat for formatting in the user's timezone
-    const formatter = new Intl.DateTimeFormat("en-US", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-        timeZone: userTimeZone,
-    });
-
-    const formattedParts = formatter.formatToParts(adjustedDate);
-    console.log("Formatted parts:", JSON.stringify(formattedParts));
-
-    // Extract the formatted components
-    let weekday, day, month, year, hour, minute, dayPeriod;
-
-    formattedParts.forEach((part) => {
-        switch (part.type) {
-            case "weekday":
-                weekday = part.value;
-                break;
-            case "day":
-                day = part.value;
-                break;
-            case "month":
-                month = part.value;
-                break;
-            case "year":
-                year = part.value;
-                break;
-            case "hour":
-                hour = part.value;
-                break;
-            case "minute":
-                minute = part.value;
-                break;
-            case "dayPeriod":
-                dayPeriod = part.value;
-                break;
+        const day = local_date.getDate();
+        let dayWithSuffix = day;
+        if (day > 0) {
+            const suffixes = ["th", "st", "nd", "rd"];
+            const relevantDigits =
+                day % 100 > 10 && day % 100 < 14 ? 0 : day % 10;
+            dayWithSuffix = day + (suffixes[relevantDigits] || suffixes[0]);
         }
-    });
 
-    // Add ordinal suffix to day
-    const dayNum = parseInt(day);
-    const suffixes = ["th", "st", "nd", "rd"];
-    const relevantDigits =
-        dayNum % 100 > 10 && dayNum % 100 < 14 ? 0 : dayNum % 10;
-    const dayWithSuffix = dayNum + (suffixes[relevantDigits] || suffixes[0]);
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ];
+        const month = months[local_date.getMonth()];
 
-    // Combine to create the final formatted string
-    const result = `${weekday} ${dayWithSuffix} ${month} ${year} ${hour}:${minute}${dayPeriod}`;
-    console.log("Final result:", result);
+        // Get year
+        const year = local_date.getFullYear();
 
-    return result;
+        // Get hours in 12-hour format
+        let hours = local_date.getHours();
+        const ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Convert 0 to 12
+
+        const minutes = local_date.getMinutes().toString().padStart(2, "0");
+
+        const seconds = local_date.getSeconds().toString().padStart(2, "0");
+
+        const ms = local_date.getMilliseconds().toString().padStart(3, "0");
+
+        const formattedDate = `${weekday} ${dayWithSuffix} ${month} ${year} ${hours}:${minutes}:${seconds}:${ms} ${ampm}`;
+
+        return formattedDate;
+    } else if (format == "date") {
+        const weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        const weekday = weekdays[local_date.getDay()];
+
+        const day = local_date.getDate();
+        let dayWithSuffix = day;
+        if (day > 0) {
+            const suffixes = ["th", "st", "nd", "rd"];
+            const relevantDigits =
+                day % 100 > 10 && day % 100 < 14 ? 0 : day % 10;
+            dayWithSuffix = day + (suffixes[relevantDigits] || suffixes[0]);
+        }
+
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ];
+        const month = months[local_date.getMonth()];
+
+        // Get year
+        const year = local_date.getFullYear();
+
+        const formattedDate = `${weekday} ${dayWithSuffix} ${month} ${year}`;
+
+        return formattedDate;
+    } else if (format == "time") {
+        let hours = local_date.getHours();
+        const ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Convert 0 to 12
+
+        const minutes = local_date.getMinutes().toString().padStart(2, "0");
+
+        const seconds = local_date.getSeconds().toString().padStart(2, "0");
+
+        const ms = local_date.getMilliseconds().toString().padStart(3, "0");
+
+        const formatedTime = `${hours}:${minutes}:${seconds}:${ms} ${ampm}`;
+        return formatedTime;
+    } else {
+        return "ft parameter not recognized, please select either: datetime, date or time";
+    }
 }

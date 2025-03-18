@@ -31,3 +31,9 @@ Functions:
 - current-timezone() -> timezone
 - with-timezone(dt: datetime, tz: timezone) -> datetime-timezone
 
+
+-- datetime current: $now()
+-- ftd.integer: $current.dt
+
+-- string fmt-datetime: $fmt(dt = $current, ft = "time")
+-- ftd.text: $fmt-datetime
