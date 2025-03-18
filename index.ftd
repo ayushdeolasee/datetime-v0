@@ -1,5 +1,16 @@
--- ftd.text: Documentation https://github.com/pypdeveloper/datetime-v0/tree/main/docs
+-- ds.page: Datetime package
+align-content: center
+margin: $ds.spaces.vertical-gap.zero
 
+-- ds.heading-large: Datetime package
+margin: $ds.spaces.vertical-gap.medium
+
+-- ds.primary-button: Documentation
+link: /docs
+size: large
+rounded: true
+
+-- end: ds.page
 -- record datetime:
 integer dt:
 
