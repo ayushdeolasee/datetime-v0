@@ -38,7 +38,7 @@ function timezone_offset() {
     return new fastn.recordInstanceClass({ timezone_offset: timezone_offset });
 }
 
-function delta(start = null, end) {
+function delta(end, start = null) {
     if (start == null) {
         console.log("Using no end");
         const end_i64_value = Number(end.get().toObject().dt);

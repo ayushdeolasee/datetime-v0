@@ -3,4 +3,25 @@ margin: $ds.spaces.vertical-gap.zero
 
 -- ds.heading-large: Documentation
 
+Package: `lets-update.fifthtry.site`
+
+Package that provides datetime functions. The package allows you to create a datetime record and provides functions to work with datetime records.
+
+
+-- ds.heading-medium: `Records`
+
+
+-- ds.heading-small: datetime
+
+
+
+-- ds.heading-medium: Functions
+
+
+-- ds.heading-small: now():
+
+
+
+-- ds.heading-small: fmt(dt: datetime, ft: string):
+
 -- end: ds.page
