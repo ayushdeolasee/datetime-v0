@@ -1,0 +1,50 @@
+-- ds.page: Documentation
+margin: $ds.spaces.vertical-gap.zero
+
+-- ds.heading-large: Documentation
+
+-- ds.copy-regular: Package: `datetime-v0.fifthtry.site`
+margin: $ds.spaces.vertical-gap.medium
+
+-- ds.copy-regular: Package that provides datetime functions. The package allows you to create a datetime record and provides functions to work with datetime records.
+margin: $ds.spaces.vertical-gap.medium
+
+-- ds.heading-medium: `Records`
+margin: $ds.spaces.vertical-gap.medium
+
+-- ds.heading-small: datetime
+-- ds.column:
+align-content: left
+	-- ds.copy-regular: A datetime record is a record that represents a date and time. The record has the following fields:
+	-- ds.copy-regular: - dt: stores the datetime value
+-- end: ds.column
+-- ds.heading-medium: `Functions`
+margin: $ds.spaces.vertical-gap.medium
+
+-- ds.heading-small: now(diff) -> datetime:
+-- ds.column:
+align-content: left
+	-- ds.copy-regular: Returns the time as an i64 unix epoch string with nanoseconds precision in the UTC timezone.
+-- end: ds.column
+
+
+-- ds.heading-small: fmt(dt: datetime, ft: string) -> string:
+-- ds.column:
+align-content: left
+	-- ds.copy-regular:
+	
+	   Expects a `datetime` record and a `format` string. Returns a formatted string in the users timezone.
+	   The ft parameter can be either of the following:
+	
+	   - datetime:
+	       - E.g: Wednesday 19th March 2025 9:17:36:788 PM
+	   - date:
+	       - E.g: Wednesday 19th March 2025
+	   - time
+	      - E.g: 9:18:46:177 PM
+	-- end: ds.copy-regular
+-- end: ds.column
+
+-- ds.copy-regular: Github: https://github.com/pypdeveloper/datetime-v0
+
+-- end: ds.page
