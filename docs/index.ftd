@@ -24,7 +24,7 @@ margin: $ds.spaces.vertical-gap.medium
 -- ds.heading-small: now(diff) -> datetime:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Returns the time as an i64 unix epoch string with nanoseconds precision in the UTC timezone.
+	-- ds.copy-regular: Returns the time as an i64 unix epoch string with nanoseconds precision in the UTC timezone. Optional parameter of `diff` which returns the time from now `diff` minutes later.
 -- end: ds.column
 
 
