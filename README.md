@@ -1,39 +1,46 @@
-## Features to implement  
-- [x] Get current date time 
-- [x] Return Year from a datetime object
-- [x] Return Month from a datetime object
-- [x] Return Day from a datetime object
-- [x] Return Hour from a datetime object
-- [x] Return Minute from a datetime object
-- [x] Return Second from a datetime object
-- [x] Calculate time delta between two input dates
-- [x] Calculate time delta between now and x time after
-- [x] Get current time x amount of time after
-- [x] Get only speciic parts (e.g. Year, Month) from a datetime string
+# Datetime Package 
 
+A comprehensive datetime package for the FASTN language that provides utilities for date and time manipulation, formatting, and parsing.
 
-Records:
-- datetime
+## Overview
 
-- timezone
-- datetime-timezone
+This package offers datetime functionality for FASTN applications. Visit [datetime-v0.fifthtry.site](https://datetime-v0.fifthtry.site) for detailed documentation and examples.
 
-- datetime-extended
-- datetime-delta
-- instant
-- duration
+## Features
 
+- Get current date time
+- format datetime to required format
 
-Functions: 
-- now() -> datetime
-- fmt(dt-tz: datetime, ft: string) -> string // timezone computed within the function
+## Installation
 
-- current-timezone() -> timezone
-- with-timezone(dt: datetime, tz: timezone) -> datetime-timezone
+Add the following to your `FASTN.ftd` file:
 
+```ftd
+-- fastn.dependency: datetime-v0.fifthtry.site
+```
 
+## Quick Start
+
+Here's a simple example of how to use the datetime package:
+
+```ftd
 -- datetime current: $now()
--- ftd.integer: $current.dt
+-- string format-string: $fmt(dt = $current, ft = "datetime")
+-- ftd.text: $format-string
+```
 
--- string fmt-datetime: $fmt(dt = $current, ft = "time")
--- ftd.text: $fmt-datetime
+## Documentation
+
+For complete documentation, examples, and API reference, visit our [documentation site](https://datetime-v0.fifthtry.site).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+AGPL-3
+
+## Support
+
+If you encounter any issues or have questions, please file an issue on the GitHub repository.
