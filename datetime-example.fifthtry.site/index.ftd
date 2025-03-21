@@ -1,0 +1,12 @@
+-- datetime.datetime current: $datetime.now()
+-- string formatted-datetime: $datetime.fmt(dt = $current, ft = "datetime")
+
+-- ds.page: Datetime Example
+margin: $ds.spaces.vertical-gap.zero
+align-content: center
+
+-- ds.heading-large: Your current datetime is:
+-- ds.heading-medium: $formatted-datetime
+style: regular
+
+-- end: ds.page

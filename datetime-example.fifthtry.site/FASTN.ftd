@@ -1,0 +1,9 @@
+-- import: fastn
+-- fastn.package: datetime-example.fifthtry.site
+-- fastn.auto-import: datetime-example.fifthtry.site/assets
+
+-- fastn.dependency: datetime-v0.fifthtry.site
+-- fastn.dependency: design-system.fifthtry.site
+
+-- fastn.auto-import: design-system.fifthtry.site as ds
+-- fastn.auto-import: datetime-v0.fifthtry.site as datetime 
