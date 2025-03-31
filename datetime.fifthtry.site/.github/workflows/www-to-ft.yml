@@ -9,7 +9,7 @@ on:
 
 
 jobs:
-  upload-to-fifthtry:
+  upload-package-to-fifthtry:
     runs-on: ubuntu-latest
     env:
       FIFTHTRY_SITE_WRITE_TOKEN: ${{ secrets.FT_DATETIME_V0_WWW }}
@@ -17,6 +17,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
-      - run: cd datetime-v0
+      - run: cd datetime.fifthtry.site
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-v0 
+  upload-example-to-fifthtry:
+    runs-on: ubuntu-latest
+    env:
+      FIFTHTRY_SITE_WRITE_TOKEN: ${{ secrets.FT_DATETIME_V0_WWW }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
+      - run: cd datetime-example.fifthtry.site
+      - name: Upload to FifthTry using fastn
+        run: fastn upload datetime-example
