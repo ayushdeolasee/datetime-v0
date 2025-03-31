@@ -23,7 +23,7 @@ jobs:
   upload-example-to-fifthtry:
     runs-on: ubuntu-latest
     env:
-      FIFTHTRY_SITE_WRITE_TOKEN: ${{ secrets.FT_DATETIME_V0_WWW }}
+      FIFTHTRY_SITE_WRITE_TOKEN: ${{ secrets.FT_DATETIME_EXAMPLE }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
