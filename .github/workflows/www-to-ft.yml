@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
-      - run: cd datetime.fifthtry.site
+      - run: cd datetime.fifthtry.site && ls
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-v0 
   upload-example-to-fifthtry:
@@ -28,6 +28,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
-      - run: cd datetime-example.fifthtry.site
+      - run: cd datetime-example.fifthtry.site && ls
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-example
