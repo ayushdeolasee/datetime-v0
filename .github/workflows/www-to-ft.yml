@@ -21,6 +21,7 @@ jobs:
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-v0 
   upload-example-to-fifthtry:
+    needs: upload-package-to-fifthtry
     runs-on: ubuntu-latest
     env:
       FIFTHTRY_SITE_WRITE_TOKEN: ${{ secrets.FT_DATETIME_EXAMPLE }}
