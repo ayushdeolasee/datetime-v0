@@ -15,7 +15,7 @@ margin: $ds.spaces.vertical-gap.small
 -- ds.copy-regular: $format-string
 margin: $ds.spaces.vertical-gap.medium
 
--- ds.copy-large: Package that provides datetime functions. The package allows you to create a datetime record and provides functions to work with datetime records. It is an open-source package available on Github (https://github.com/pypdeveloper/datetime-v0), under the AGPL-3 Lisence.
+-- ds.copy-large: Package that provides datetime functions. The package allows you to create a datetime record and provides functions to work with datetime records. It is an open-source package available on [Github](https://github.com/pypdeveloper/datetime-v0), under the AGPL-3 Lisence.
 margin: $ds.spaces.vertical-gap.medium
 
 -- ds.heading-medium: `Records`
@@ -38,19 +38,19 @@ align-content: left
 -- ds.heading-medium: `Functions`
 margin: $ds.spaces.vertical-gap.medium
 
--- ds.heading-small: now(diff) -> datetime:
+-- ds.heading-small: datetime.now(diff) -> datetime.datetime:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular: Returns the time as an i64 unix epoch string with nanoseconds precision in the UTC timezone. Optional parameter of `diff` which returns the time from now `diff` minutes later.
 	-- ds.code:
 	lang: ftd
 	
-	\-- datetime current: $now()
+	\-- datetime.datetime current: $datetime.now()
 	-- end: ds.code
 -- end: ds.column
 
 
--- ds.heading-small: fmt(dt: datetime, ft: string) -> string:
+-- ds.heading-small: datetime.fmt(dt: datetime, ft: string) -> string:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular:
@@ -68,8 +68,20 @@ align-content: left
 	-- ds.code:
 	lang: ftd
 	
-	\-- string format-string: $fmt(dt = $current, ft = "datetime")
+	\-- string format-string: $datetime.fmt(dt = $current, ft = "datetime")
 	-- end: ds.code
+-- end: ds.column
+-- ds.heading-medium: `Using the package`
+-- ds.column:
+align-content: left
+-- ds.copy-regular: To import the package add the following lines to your FASTN.ftd file
+-- ds.code:
+	lang: ftd
+
+	\-- fastn.dependency: datetime-v0.fifthtry.site
+	\-- fastn.auto-import: datetime-v0.fifthtry.site as datetime 
+-- end: ds.code
+-- ds.copy-regular: Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
 -- end: ds.column
 -- end: ds.page
 
