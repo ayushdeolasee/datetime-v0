@@ -2,29 +2,64 @@ function datetime(diff) {
     const currentDate = new Date();
     const date = new Date(currentDate.getTime() + diff * 60000);
 
-    const utcTime = new Date(
-        date.getUTCFullYear(),
-        date.getUTCMonth(),
-        date.getUTCDate(),
-        date.getUTCHours(),
-        date.getUTCMinutes(),
-        date.getUTCSeconds(),
-        date.getUTCMilliseconds()
-    );
+    // Date part: YYYYMMDD (always 8 digits)
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+    const day = date.getUTCDate().toString().padStart(2, "0");
+    const datePart = parseInt(`${year}${month}${day}`);
 
-    const now = BigInt(utcTime) * BigInt(1000000);
+    // Time part: HHMMSSmmmnnnnnnnnn (always 17 digits, zero-padded)
+    const hours = date.getUTCHours().toString().padStart(2, "0");
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+    const seconds = date.getUTCSeconds().toString().padStart(2, "0");
+    const milliseconds = date.getUTCMilliseconds().toString().padStart(3, "0");
+    // JS Date does not provide nanosecond precision, so pad with zeros
+    const nanoseconds = "000000000";
+    const timeStr = `${hours}${minutes}${seconds}${milliseconds}${nanoseconds}`;
+    // Store as string to preserve leading zeros
+
     return new fastn.recordInstanceClass({
-        dt: now,
+        date: datePart,
+        time: timeStr,
     });
 }
 
+function constructSingleInt(dt) {
+    const { date, time } = dt.get().toObject();
+    // Parse date: YYYYMMDD
+    const dateStr = date.toString();
+    const year = parseInt(dateStr.slice(0, 4));
+    const month = parseInt(dateStr.slice(4, 6)) - 1; // JS months are 0-based
+    const day = parseInt(dateStr.slice(6, 8));
+
+    // Parse time: HHMMSSmmmnnnnnnnnn (always 17 digits)
+    const timeStr = time.toString().padStart(17, "0");
+    const hour = parseInt(timeStr.slice(0, 2));
+    const minute = parseInt(timeStr.slice(2, 4));
+    const second = parseInt(timeStr.slice(4, 6));
+    const millisecond = parseInt(timeStr.slice(6, 9));
+    const nanosecond = parseInt(timeStr.slice(9, 18));
+
+    // Construct JS Date (ms precision)
+    const dateObj = Date.UTC(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond
+    );
+    // Convert to ns
+    const epochNs = BigInt(dateObj) * 1_000_000n + BigInt(nanosecond);
+    return epochNs;
+}
+
 function fmt(dt, ft) {
-    const i64 = Number(dt.get().toObject().dt);
+    const i64 = Number(constructSingleInt(dt));
     const milliseconds = Math.floor(i64 / 1000000);
-    const date = new Date();
-    const timezone_offset = date.getTimezoneOffset();
-    const local_time = milliseconds - timezone_offset * 60000;
-    const local_date = new Date(local_time);
+    // Use JS Date's local time handling
+    const local_date = new Date(milliseconds);
     const format = ft.replaceAll(`"`, "");
 
     if (format == "datetime") {
