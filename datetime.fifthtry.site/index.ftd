@@ -52,14 +52,25 @@ align-content: left
 	-- end: ds.code
 -- end: ds.column
 
--- ds.heading-small: `datetime.to-unixtime(dt: datetime) -> integer`:
+-- ds.heading-small: `datetime.to_unixtime_nanos(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
-	\-- integer combined: $datetime.to-unixtime(dt = $current)
+	\-- integer nanos: $datetime.to_unixtime_nanos(dt = $current)
+	-- end: ds.code
+-- end: ds.column
+
+-- ds.heading-small: `datetime.to_unixtime_millis(dt: datetime) -> integer`:
+-- ds.column:
+align-content: left
+	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in milliseconds (UTC). This is useful for precise time calculations or storage.
+	-- ds.code:
+	lang: ftd
+	
+	\-- integer millis: $datetime.to_unixtime_millis(dt = $current)
 	-- end: ds.code
 -- end: ds.column
 
@@ -105,11 +116,17 @@ js: $assets.files.js.functions.js
 
 fastn_datetime.now(diff)
 
--- integer to-unixtime(dt):
+-- integer to-unixtime-nanos(dt):
 datetime dt:
 js: $assets.files.js.functions.js
 
-fastn_datetime.to_unixtime(dt)
+fastn_datetime.to_unixtime_nanos(dt)
+
+-- integer to-unixtime-millis(dt):
+datetime dt:
+js: $assets.files.js.functions.js
+
+fastn_datetime.to_unixtime_millis(dt)
 
 -- string fmt(dt, ft):
 datetime dt:

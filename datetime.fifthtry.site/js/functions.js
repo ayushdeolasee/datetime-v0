@@ -29,7 +29,7 @@
         });
     }
 
-    function to_unixtime(dt) {
+    function to_unixtime_nanos(dt) {
         const { date, time } = dt.get().toObject();
         // Parse date: YYYYMMDD
         const dateStr = date.toString();
@@ -60,8 +60,36 @@
         return epochNs;
     }
 
+    function to_unixtime_millis(dt) {
+        const { date, time } = dt.get().toObject();
+        // Parse date: YYYYMMDD
+        const dateStr = date.toString();
+        const year = parseInt(dateStr.slice(0, 4));
+        const month = parseInt(dateStr.slice(4, 6)) - 1; // JS months are 0-based
+        const day = parseInt(dateStr.slice(6, 8));
+
+        // Parse time: HHMMSSmmmnnnnnnnnn (always 17 digits)
+        const timeStr = time.toString().padStart(17, "0");
+        const hour = parseInt(timeStr.slice(0, 2));
+        const minute = parseInt(timeStr.slice(2, 4));
+        const second = parseInt(timeStr.slice(4, 6));
+        const millisecond = parseInt(timeStr.slice(6, 9));
+
+        // Construct JS Date (ms precision)
+        const dateObj = Date.UTC(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond
+        );
+        return dateObj; // Number, ms since epoch
+    }
+
     function fmt(dt, ft) {
-        const i64 = Number(to_unixtime(dt));
+        const i64 = Number(to_unixtime_nanos(dt));
         const milliseconds = Math.floor(i64 / 1000000);
         // Use JS Date's local time handling
         const local_date = new Date(milliseconds);
@@ -187,7 +215,8 @@
     // Expose all functions under window.fastn_datetime
     window.fastn_datetime = {
         now,
-        to_unixtime,
+        to_unixtime_nanos,
+        to_unixtime_millis,
         fmt,
     };
 })();
