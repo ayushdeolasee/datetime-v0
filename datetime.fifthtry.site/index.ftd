@@ -22,12 +22,13 @@ margin: $ds.spaces.vertical-gap.medium
 -- ds.heading-medium: `Records`
 margin: $ds.spaces.vertical-gap.medium
 
--- ds.heading-small: datetime
+-- ds.heading-small: `datetime`
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: A datetime record is a record that represents a date and time. The record has the following fields:
-	-- ds.copy-regular: - date: stores the date as an integer in the format YYYYMMDD (e.g., 20250418 for April 18, 2025)
-	-- ds.copy-regular: - time: stores the time as an integer in the format HHMMSSmmmnnnnnnnnn (e.g., 123008817000000000 for 12:30:08.817000000)
+	-- ds.copy-regular: A `datetime` record is a record that represents a date and time. The record has the following fields:
+	-- ds.copy-regular: - `date`: stores the date as an integer in the format YYYYMMDD (e.g., 20250418 for April 18, 2025)
+	-- ds.copy-regular: - `time`: stores the time as an integer in the format HHMMSSmmmnnnnnnnnn (e.g., 123008817000000000 for 12:30:08.817000000)
+	
 	-- ds.code:
 	lang: ftd
 	
@@ -40,10 +41,10 @@ align-content: left
 -- ds.heading-medium: `Functions`
 margin: $ds.spaces.vertical-gap.medium
 
--- ds.heading-small: datetime.now(diff) -> datetime.datetime:
+-- ds.heading-small: `datetime.now(diff) -> datetime.datetime`:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Returns a datetime record with the current date and time in UTC. The date is stored as YYYYMMDD and the time as HHMMSSmmmnnnnnnnnn (to nanosecond precision, nanoseconds padded with zeros). Optional parameter `diff` returns the time from now `diff` minutes later.
+	-- ds.copy-regular: Returns a `datetime` record with the current date and time in UTC. The date is stored as YYYYMMDD and the time as HHMMSSmmmnnnnnnnnn (to nanosecond precision, nanoseconds padded with zeros). Optional parameter `diff` returns the time from now `diff` minutes later.
 	-- ds.code:
 	lang: ftd
 	
@@ -51,18 +52,18 @@ align-content: left
 	-- end: ds.code
 -- end: ds.column
 
--- ds.heading-small: datetime.combine(dt: datetime) -> integer:
+-- ds.heading-small: `datetime.to-unixtime(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Combines a datetime record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
+	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
-	\-- integer combined: $datetime.combine(dt = $current)
+	\-- integer combined: $datetime.to-unixtime(dt = $current)
 	-- end: ds.code
 -- end: ds.column
 
--- ds.heading-small: datetime.fmt(dt: datetime, ft: string) -> string:
+-- ds.heading-small: `datetime.fmt(dt: datetime, ft: string) -> string`:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular:
@@ -102,17 +103,17 @@ align-content: left
 optional integer diff:
 js: $assets.files.js.functions.js
 
-datetime(diff)
+fastn_datetime.now(diff)
 
--- integer combine(dt):
+-- integer to-unixtime(dt):
 datetime dt:
 js: $assets.files.js.functions.js
 
-constructSingleInt(dt)
+fastn_datetime.to_unixtime(dt)
 
 -- string fmt(dt, ft):
 datetime dt:
 string ft:
 js: $assets.files.js.functions.js
 
-fmt(dt, ft)
+fastn_datetime.fmt(dt, ft)
