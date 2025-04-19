@@ -29,7 +29,7 @@
         });
     }
 
-    function to_unixtime_nanos(dt) {
+    function to_timestamp_nanos(dt) {
         const { date, time } = dt.get().toObject();
         // Parse date: YYYYMMDD
         const dateStr = date.toString();
@@ -60,7 +60,7 @@
         return epochNs;
     }
 
-    function to_unixtime_millis(dt) {
+    function to_timestamp_millis(dt) {
         const { date, time } = dt.get().toObject();
         // Parse date: YYYYMMDD
         const dateStr = date.toString();
@@ -89,7 +89,7 @@
     }
 
     function fmt(dt, ft) {
-        const i64 = Number(to_unixtime_nanos(dt));
+        const i64 = Number(to_timestamp_nanos(dt));
         const milliseconds = Math.floor(i64 / 1000000);
         // Use JS Date's local time handling
         const local_date = new Date(milliseconds);
@@ -215,8 +215,8 @@
     // Expose all functions under window.fastn_datetime
     window.fastn_datetime = {
         now,
-        to_unixtime_nanos,
-        to_unixtime_millis,
+        to_timestamp_nanos,
+        to_timestamp_millis,
         fmt,
     };
 })();

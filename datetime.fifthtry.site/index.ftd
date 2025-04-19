@@ -34,7 +34,7 @@ align-content: left
 	
 	\-- record datetime:
 	\integer date:
-	\integer time:	
+	\integer time:
 	-- end: ds.code
 
 -- end: ds.column
@@ -52,25 +52,25 @@ align-content: left
 	-- end: ds.code
 -- end: ds.column
 
--- ds.heading-small: `datetime.to-unix-time-nanos(dt: datetime) -> integer`:
+-- ds.heading-small: `datetime.to-timestamp-nanos(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
-	\-- integer nanos: $datetime.to-unix-time-nanos(dt = $current)
+	\-- integer nanos: $datetime.to-timestamp-nanos(dt = $current)
 	-- end: ds.code
 -- end: ds.column
 
--- ds.heading-small: `datetime.to-unix-time-millis(dt: datetime) -> integer`:
+-- ds.heading-small: `datetime.to-timestamp-millis(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
 	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in milliseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
-	\-- integer millis: $datetime.to-unix-time-millis(dt = $current)
+	\-- integer millis: $datetime.to-timestamp-millis(dt = $current)
 	-- end: ds.code
 -- end: ds.column
 
@@ -78,9 +78,9 @@ align-content: left
 -- ds.column:
 align-content: left
 	-- ds.copy-regular:
-	   
+	
 	   Expects a `datetime` record and a `format` string. Returns a formatted string in the user's local timezone.
-	  
+	
 	   The ft parameter can be either of the following:
 	   - datetime:
 	       - E.g: Wednesday 19th March 2025 9:17:36:788 PM
@@ -98,14 +98,14 @@ align-content: left
 -- ds.heading-medium: `Using the package`
 -- ds.column:
 align-content: left
--- ds.copy-regular: To import the package add the following lines to your FASTN.ftd file
--- ds.code:
-	lang: ftd
-
-	\-- fastn.dependency: datetime-v0.fifthtry.site
-	\-- fastn.auto-import: datetime-v0.fifthtry.site as datetime 
--- end: ds.code
--- ds.copy-regular: Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
+	-- ds.copy-regular: To import the package add the following lines to your FASTN.ftd file
+	-- ds.code:
+	 lang: ftd
+	
+	 \-- fastn.dependency: datetime-v0.fifthtry.site
+	 \-- fastn.auto-import: datetime-v0.fifthtry.site as datetime
+	-- end: ds.code
+	-- ds.copy-regular: Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
 -- end: ds.column
 -- end: ds.page
 
@@ -116,17 +116,17 @@ js: $assets.files.js.functions.js
 
 fastn_datetime.now(diff)
 
--- integer to-unix-time-nanos(dt):
+-- integer to-timestamp-nanos(dt):
 datetime dt:
 js: $assets.files.js.functions.js
 
-fastn_datetime.to_unixtime_nanos(dt)
+fastn_datetime.to_timestamp_nanos(dt)
 
--- integer to-unix-time-millis(dt):
+-- integer to-timestamp-millis(dt):
 datetime dt:
 js: $assets.files.js.functions.js
 
-fastn_datetime.to_unixtime_millis(dt)
+fastn_datetime.to_timestamp_millis(dt)
 
 -- string fmt(dt, ft):
 datetime dt:
