@@ -44,7 +44,9 @@ margin: $ds.spaces.vertical-gap.medium
 -- ds.heading-small: `datetime.now(diff) -> datetime.datetime`:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Returns a `datetime` record with the current date and time in UTC. The date is stored as YYYYMMDD and the time as HHMMSSmmmnnnnnnnnn (to nanosecond precision, nanoseconds padded with zeros). Optional parameter `diff` returns the time from now `diff` minutes later.
+	-- ds.copy-regular:
+	
+	Returns a `datetime` record with the current date and time in UTC. The date is stored as YYYYMMDD and the time as HHMMSSmmmnnnnnnnnn (to nanosecond precision, nanoseconds padded with zeros). Optional parameter `diff` returns the time from now `diff` minutes later.
 	-- ds.code:
 	lang: ftd
 	
@@ -55,7 +57,9 @@ align-content: left
 -- ds.heading-small: `datetime.to-timestamp-nanos(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
+	-- ds.copy-regular:
+	
+	Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in nanoseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
@@ -66,7 +70,9 @@ align-content: left
 -- ds.heading-small: `datetime.to-timestamp-millis(dt: datetime) -> integer`:
 -- ds.column:
 align-content: left
-	-- ds.copy-regular: Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in milliseconds (UTC). This is useful for precise time calculations or storage.
+	-- ds.copy-regular:
+	
+	Combines a `datetime` record's date and time fields into a single integer representing the Unix epoch in milliseconds (UTC). This is useful for precise time calculations or storage.
 	-- ds.code:
 	lang: ftd
 	
@@ -105,7 +111,9 @@ align-content: left
 	 \-- fastn.dependency: datetime-v0.fifthtry.site
 	 \-- fastn.auto-import: datetime-v0.fifthtry.site as datetime
 	-- end: ds.code
-	-- ds.copy-regular: Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
+	-- ds.copy-regular:
+	
+	Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
 -- end: ds.column
 -- end: ds.page
 
