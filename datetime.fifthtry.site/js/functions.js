@@ -30,7 +30,14 @@
     }
 
     function to_timestamp_nanos(dt) {
-        const { date, time } = dt.get().toObject();
+        let date, time;
+        if (dt instanceof fastn.recordInstanceClass) {
+            date = dt.toObject().date;
+            time = dt.toObject().time;
+        } else {
+            date = dt.get().toObject().date;
+            time = dt.get().toObject().time;
+        }
         // Parse date: YYYYMMDD
         const dateStr = date.toString();
         const year = parseInt(dateStr.slice(0, 4));
@@ -61,8 +68,15 @@
     }
 
     function to_timestamp_millis(dt) {
-        const { date, time } = dt.get().toObject();
-        // Parse date: YYYYMMDD
+        let date, time;
+        if (dt instanceof fastn.recordInstanceClass) {
+            date = dt.toObject().date;
+            time = dt.toObject().time;
+        } else {
+            date = dt.get().toObject().date;
+            time = dt.get().toObject().time;
+        }
+        // const { date, time } = dt.get().toObject();
         const dateStr = date.toString();
         const year = parseInt(dateStr.slice(0, 4));
         const month = parseInt(dateStr.slice(4, 6)) - 1; // JS months are 0-based
