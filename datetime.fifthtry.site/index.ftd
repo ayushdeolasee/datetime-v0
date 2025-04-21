@@ -2,18 +2,8 @@
 integer date:
 integer time:
 
--- datetime $testing:
-date: 20250422
-time: 070300000000000000
-
--- ftd.integer: $to-timestamp-millis(dt=$testing)
-
--- datetime $anothertest: $now();
-
--- ftd.integer: $to-timestamp-millis(dt=$anothertest)
-
--- datetime currentish: $now()
--- string format-string: $fmt(dt = $currentish, ft = "datetime")
+-- datetime current: $now()
+-- string format-string: $fmt(dt = $current, ft = "datetime")
 
 -- ds.page: Datetime package
 margin: $ds.spaces.vertical-gap.zero
