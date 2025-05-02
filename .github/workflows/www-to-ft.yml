@@ -16,8 +16,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
-      - run: cd datetime.fifthtry.site && ls
+      - name: Install fastn
+        run: |
+          sh -c "$(curl -fsSL https://fastn.com/install.sh)"
+          echo "$HOME/.fastn/bin" >> $GITHUB_PATH
+      - name: Verify directory content
+        run: cd datetime.fifthtry.site && ls
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-v0 
   upload-example-to-fifthtry:
@@ -28,7 +32,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
-      - run: cd datetime-example.fifthtry.site && ls
+      - name: Install fastn
+        run: |
+          sh -c "$(curl -fsSL https://fastn.com/install.sh)"
+          echo "$HOME/.fastn/bin" >> $GITHUB_PATH
+      - name: Verify directory content
+        run: cd datetime-example.fifthtry.site && ls
       - name: Upload to FifthTry using fastn
         run: fastn upload datetime-example

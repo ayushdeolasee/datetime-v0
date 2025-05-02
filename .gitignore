@@ -1,8 +1,14 @@
-datetime.fifthtry.site/js/node_modules
+datetime.fifthtry.site/js/node_modules/
 
-datetime.fifthtry.site/.packages
-datetime-example.fifthtry.site/.packages
-datetime.fifthtry.site/.fastn
-datetime-example.fifthtry.site/.fastn
+datetime.fifthtry.site/.packages/
+datetime-example.fifthtry.site/.packages/
+datetime.fifthtry.site/.fastn/
+datetime-example.fifthtry.site/.fastn/
 
-datetime.fifthtry.site/js/node_modules
+.DS_Store
+Thumbs.db
+
+.idea/
+.vscode/
+*.swp
+*.swo
