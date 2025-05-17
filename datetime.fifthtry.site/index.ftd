@@ -3,7 +3,7 @@ integer date:
 integer time:
 
 -- datetime current: $now()
--- string format-string: $fmt(dt = $current, ft = "datetime")
+-- string formatted-datetime: $fmt(dt = $current, ft = "datetime")
 
 -- ds.page: Datetime package
 margin: $ds.spaces.vertical-gap.zero
@@ -13,10 +13,10 @@ margin: $ds.spaces.vertical-gap.zero
 -- ds.copy-regular: Package: `datetime-v0.fifthtry.site`
 margin: $ds.spaces.vertical-gap.small
 
--- ds.copy-regular: $format-string
+-- ds.copy-regular: $formatted-datetime
 margin: $ds.spaces.vertical-gap.medium
 
--- ds.copy-large: Package that provides datetime functions. The package allows you to create a datetime record and provides functions to work with datetime records. It is an open-source package available on [Github](https://github.com/pypdeveloper/datetime-v0), under the AGPL-3 Lisence.
+-- ds.copy-large: Package that provides datetime functions for the [fastn language](https://fastn.org). Fastn is a modern and data-centric language that is designed to be easy to learn and use. The package allows you to create a datetime record and provides functions to work with datetime records. It is an open-source package available on [Github](https://github.com/pypdeveloper/datetime-v0), under the AGPL-3 Lisence.
 margin: $ds.spaces.vertical-gap.medium
 
 -- ds.heading-medium: `Records`
@@ -107,13 +107,62 @@ align-content: left
 	-- ds.copy-regular: To import the package add the following lines to your FASTN.ftd file
 	-- ds.code:
 	 lang: ftd
-	
+	 
 	 \-- fastn.dependency: datetime-v0.fifthtry.site
 	 \-- fastn.auto-import: datetime-v0.fifthtry.site as datetime
 	-- end: ds.code
-	-- ds.copy-regular:
-	
-	Checkout a github example of the package at [datetime-example.fifthtry.site](datetime-example.fifthtry.site) and visit the source code at [https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site](https://github.com/ayushdeolasee/datetime-v0/tree/main/datetime-example.fifthtry.site) site.
+-- end: ds.column
+-- ds.heading-medium: `example`
+-- ds.column:
+align-content: left
+
+-- ds.column:
+background.solid: $ds.colors.background.step-1
+
+-- ds.heading-small: Your current datetime is:
+-- ds.copy-regular: $formatted-datetime
+-- end: ds.column
+-- ds.copy-regular: Here is the code for the example that is displayed above:
+style: bold
+
+-- ds.copy-regular: Here is the FASTN.ftd file imports:
+-- ds.code: FASTN.ftd
+lang: ftd
+
+\-- import: fastn
+\-- fastn.package: datetime-example.fifthtry.site
+\-- fastn.auto-import: datetime-example.fifthtry.site/assets
+
+\-- fastn.dependency: datetime-v0.fifthtry.site
+\-- fastn.dependency: design-system.fifthtry.site
+
+\-- fastn.auto-import: design-system.fifthtry.site as ds
+\-- fastn.auto-import: datetime-v0.fifthtry.site as datetime 
+-- end: ds.code
+-- ds.copy-regular: This example uses two packages, firstly we import the datetime package which will allow us to use the datetime functions that are mentioned above, and secondly we import the design-system package which is a [design system](https://design-system.fifthtry.site) for FASTN, and provides many UI components that make it easy to build UI's.
+
+-- ds.copy-regular: Here is the index.ftd file that is used to display the example:
+-- ds.code: index.ftd
+lang: ftd
+
+\;; we call the datetime.now() function to get the current datetime and store it in the current variable
+\-- datetime.datetime current: $datetime.now()
+\;; here we call the datetime.fmt() function to format the current datetime and store it in the formatted-datetime variable
+\-- string formatted-datetime: $datetime.fmt(dt = $current, ft = "datetime")
+
+\;; we use the ds.page component to display the example
+\-- ds.page: Datetime Example
+margin: $ds.spaces.vertical-gap.zero
+align-content: center
+
+\-- ds.heading-large: Your current datetime is:
+\;; we use the ds.heading-medium component to display the formatted datetime
+\-- ds.heading-medium: $formatted-datetime
+\style: regular
+
+\-- ds.code: index.ftd
+-- end: ds.code
+
 -- end: ds.column
 -- end: ds.page
 
